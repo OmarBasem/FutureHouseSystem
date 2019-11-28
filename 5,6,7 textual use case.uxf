@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>10</x>
+      <y>70</y>
+      <w>370</w>
+      <h>350</h>
+    </coordinates>
+    <panel_attributes>Use case: View detailed data usage
+--
+ID: 5
+--
+Primary actor: Manager
+--
+Secondary actor: Backend server 
+--
+Precondition:
+	1- the backend server is functioning 
+	2- the manager is logged in
+--
+Postcondition:
+	1- The manager views a detailed analysis of data usage
+--
+Main flow:
+1-systems asks for manager login 
+2-manager loggs into the system
+3-System validates login details 
+4-the manager views detailed data usage of the system
+--
+Alternative flows:
+2a . Incorrect login 
+	          1.System shows incorrect login 
+	          2. The systems asks the manager to login again 
+	          3. Return to step 1 main flow
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>430</x>
+      <y>20</y>
+      <w>420</w>
+      <h>290</h>
+    </coordinates>
+    <panel_attributes>Use case: Control IoT devices  
+--
+ID:6
+--
+Primary actor: Dweller
+--
+Secondary actor: Backend 
+--
+Precondition:
+1- IoT devices are operational
+2- backend server is functioning
+--
+Postcondition:
+1-home dweller operates IoT devices
+--
+Main flow:
+1-Dweller selects the device he wants to control
+2-system connects him to that device
+3- Dweller is able to operate that device
+--
+Alternative flows:
+None</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>410</x>
+      <y>320</y>
+      <w>460</w>
+      <h>390</h>
+    </coordinates>
+    <panel_attributes>Use case: Share statistics
+--
+ID:7
+--
+Primary actor: Dweller
+--
+Secondary actor: Backend 
+--
+Precondition:
+1-backend server is functioning
+2- system is connected to the internet
+--
+Postcondition:
+1- statistics is shared
+--
+Main flow:
+1-dweller chooses to share statistics 
+2-System offers the dweller different social media outlets to choose from
+3-dweller selects the preferred outlet
+4-System asks dweller for login info
+5-dweller enters login details for that outlet
+6-statistics are shared
+--
+Alternative flows:
+5a. Incorrect login
+	          1.System shows incorrect login 
+	          2. The systems asks the dweller to login again 
+	          3. Return to step 4 main flow
+
+	
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
