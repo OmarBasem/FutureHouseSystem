@@ -21,3 +21,9 @@ and run the following command to install the frontend react packages:
 > .\node_modules\.bin\webpack --config webpack.config.js --watch
 
 Go to the local host (ip address given when you run the django server) in your browser and should see a white home page. Test connection to the backend server from there.
+
+Also, you can go the admin page through: http://127.0.0.1:8000/admin/
+username: admin
+Password: heriotwatt
+
+In the admin page you can see all the database tables, create new objects, update them or delete them.
