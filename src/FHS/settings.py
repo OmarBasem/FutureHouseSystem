@@ -42,7 +42,8 @@ DJANGO_APPS = [
 
 PROJECT_APPS = [
     'users',
-    'houses'
+    'houses',
+    'support'
 ]
 
 THIRD_PARTY_APPS = [
