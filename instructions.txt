@@ -1,0 +1,23 @@
+- First open a command prompt as administrator
+
+1. Create a virtual env & activate it
+> python3 -m venv env
+> .\env\Scripts\activate
+
+2. Install the backend python packages using pip
+> py -m pip install -r .\requirements.txt
+
+3. go to src folder
+> cd src
+
+4. run server
+> python manage.py runserver
+
+5. open a new command prompt window and navigate to the src folder then go to frontend folder inside src
+and run the following command to install the frontend react packages:
+> npm install
+
+6. activate webpack server to listen for changes in react code
+> .\node_modules\.bin\webpack --config webpack.config.js --watch
+
+Go to the local host (ip address given when you run the django server) in your browser and should see a white home page. Test connection to the backend server from there.
