@@ -18,7 +18,6 @@ class ProfilePictureSerialzer(serializers.ModelSerializer):
 
 class UserSerializer(DynamicFieldsModelSerializer):
     profile_picture = ProfilePictureSerialzer(read_only=True)
-    birth_day = serializers.SerializerMethodField()
     profile_picture_id = serializers.PrimaryKeyRelatedField(queryset=ProfilePicture.objects.all(), write_only=True, required=False)
 
     class Meta:
@@ -29,8 +28,7 @@ class UserSerializer(DynamicFieldsModelSerializer):
             'name',
             'profile_picture',
             'profile_picture_id',
-            'birth_date',
-            'birth_day',
+            'age',
             'email',
             'password',
             'code'
@@ -44,7 +42,7 @@ class UserSerializer(DynamicFieldsModelSerializer):
 
     def create(self, data):
         user = User.objects.create_user(username=data['username'], email=data['email'], name=data['name'],
-                                        birth_date=data['birth_date'], password=data['password'])
+                                        age=data['age'], password=data['password'])
         return user
 
 
@@ -52,7 +50,7 @@ class UserSerializer(DynamicFieldsModelSerializer):
     def update(self, instance, data):
         instance.name = data.pop('name')
         instance.username = data.pop('username')
-        instance.birth_date = data.pop('birth_date')
+        instance.age = data.pop('age')
         if 'profile_picture_id' in data.keys():
             if instance.profile_picture != None:
                 instance.profile_picture.delete()
@@ -62,8 +60,8 @@ class UserSerializer(DynamicFieldsModelSerializer):
 
 
     def get_birth_day(self, obj):
-        if obj.birth_date:
-            return str(obj.birth_date.day) + ' ' + obj.birth_date.strftime("%B")
+        if obj.age:
+            return str(obj.age.day) + ' ' + obj.age.strftime("%B")
 
 
 class LoginUserSerializer(serializers.Serializer):

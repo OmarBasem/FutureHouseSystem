@@ -16,12 +16,12 @@ class ProfilePicture(models.Model):
 
 class UserManager(UserManager):
 
-    def create_user(self, username, email, name, birth_date, password):
+    def create_user(self, username, email, name, age, password):
         user = self.model(
             username=username,
             email=self.normalize_email(email),
             name=name,
-            birth_date=birth_date,
+            age=age,
         )
         user.set_password(password)
         user.save()
@@ -31,7 +31,7 @@ class UserManager(UserManager):
 class User(AbstractUser):
     profile_picture = models.OneToOneField(ProfilePicture, on_delete=models.SET_NULL, blank=True, null=True)
     name = models.CharField(max_length=23, blank=True)
-    birth_date = models.DateField(blank=True, null=True)
+    age = models.CharField(default=20, max_length=2)
     email = models.EmailField(_('email address'), unique=True)
     code = models.IntegerField(blank=True, null=True)
     code_trials = models.IntegerField(default=0)

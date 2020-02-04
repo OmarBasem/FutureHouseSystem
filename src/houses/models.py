@@ -17,7 +17,7 @@ class House(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
     location = models.CharField(max_length=200, blank=True)
     cover_photo = models.OneToOneField(CoverPhoto, on_delete=models.SET_NULL, blank=True, null=True)
-    cmu_id = models.CharField(max_length=15)
+    cmu_id = models.CharField(max_length=15, unique=True)
 
 
 class Room(models.Model):
