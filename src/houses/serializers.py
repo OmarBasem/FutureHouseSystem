@@ -22,10 +22,29 @@ class CoverPhotoSerializer(serializers.ModelSerializer):
         ]
 
 
+class ReportSerializer(serializers.ModelSerializer):
+    house_id = serializers.PrimaryKeyRelatedField(queryset=House.objects.all(), write_only=True,
+                                                        required=False)
+    room_id = serializers.PrimaryKeyRelatedField(queryset=Room.objects.all(), write_only=True,
+                                                  required=False)
+
+    class Meta:
+        model = Report
+        fields = [
+            'timestamp',
+            'house_id',
+            'room_id',
+            'generated',
+            'consumed',
+            'wasted',
+            'saved'
+        ]
+
 class HouseSerializer(serializers.ModelSerializer):
     cover_photo = CoverPhotoSerializer(read_only=True)
     cover_photo_id = serializers.PrimaryKeyRelatedField(queryset=CoverPhoto.objects.all(), write_only=True,
                                                             required=False)
+    last24hr = serializers.SerializerMethodField()
     # dweller_id = serializers.PrimaryKeyRelatedField(queryset=User.objects.all(), write_only=True,
     #                                                     required=False)
     class Meta:
@@ -37,6 +56,7 @@ class HouseSerializer(serializers.ModelSerializer):
             'cover_photo',
             'cover_photo_id',
             'cmu_id',
+            'last24hr'
             # 'dweller_id'
         ]
 
@@ -67,6 +87,18 @@ class HouseSerializer(serializers.ModelSerializer):
         instance.location = data.pop('location')
         instance.save()
         return instance
+
+    def get_last24hr(self, obj):
+        report =  Report.objects.filter(house=obj).order_by('-timestamp').first()
+        data = {}
+        if report:
+            data = {
+                'generated': report.generated,
+                'consumed': report.consumed,
+                'saved': report.saved,
+                'wasted': report.wasted,
+            }
+        return data
 
 
 class RoomSerializer(serializers.ModelSerializer):
@@ -156,20 +188,5 @@ class IoTDeviceSerializer(serializers.ModelSerializer):
 
 
 
-class ReportSerializer(serializers.ModelSerializer):
-    house_id = serializers.PrimaryKeyRelatedField(queryset=House.objects.all(), write_only=True,
-                                                        required=False)
-    room_id = serializers.PrimaryKeyRelatedField(queryset=Room.objects.all(), write_only=True,
-                                                  required=False)
-
-    class Meta:
-        model = Report
-        fields = [
-            'timestamp',
-            'house_id',
-            'room_id',
-            'generated',
-            'consumed'
-        ]
 
 
