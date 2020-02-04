@@ -11,6 +11,20 @@
 // body: {cmu_id: 'abc123', name: 'House A'}
 // optionally the body can have location and cover_photo_id.
 
+export function addHouse(cmu_id, name, callback) {
+  return async function (dispatch) {
+    let config = {headers: {"Authorization": `Token ${localStorage.token}`}};
+    axios.post(`/api/houses/`, {cmu_id, name}, config)
+      .then((res) => {
+        console.log('ress', res);
+        dispatch({type: 'FETCH_HOUSES', payload: [res.data]});
+        callback() // callback to home page screen
+      }).catch(response => {
+        console.log('err add house', response)
+    })
+  }
+}
+
 // 2. To delete a house:
 // type: DELETE
 // endpoint: /api/houses/${house_id}/  e.g.: /api/houses/23/
@@ -24,6 +38,19 @@
 // 4. Fetch all the user's houses
 // type: GET
 // endpoint: /api/houses/
+
+export function fetchHouses() {
+  return async function (dispatch) {
+    let config = {headers: {"Authorization": `Token ${localStorage.token}`}};
+    axios.get(`/api/houses/`, config)
+      .then((res) => {
+        console.log('ress', res);
+        dispatch({type: 'FETCH_HOUSES', payload: res.data.results});
+      }).catch(response => {
+        console.log('err add house', response)
+    })
+  }
+}
 
 // 5. Assign a user as a dweller
 // type: POST

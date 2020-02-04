@@ -22,7 +22,7 @@ export function addHouse(cmu_id, name, callback) {
     axios.post(`${URL}/api/houses/`, {cmu_id, name}, config)
       .then((res) => {
         console.log('ress', res);
-        dispatch({type: 'ADD_HOUSE'});
+        dispatch({type: 'FETCH_HOUSES', payload: [res.data]});
         callback()
       }).catch(response => {
         console.log('err add house', response)
@@ -50,8 +50,7 @@ export function fetchHouses() {
     const config = {headers: {"Authorization": `Token ${token}`}};
     axios.get(`${URL}/api/houses/`, config)
       .then((res) => {
-        console.log('ress', res);
-        dispatch({type: 'ADD_HOUSE'});
+        dispatch({type: 'FETCH_HOUSES', payload: res.data.results});
       }).catch(response => {
         console.log('err add house', response)
     })

@@ -22,7 +22,6 @@ export default function auth(state = initialState, action) {
 
     case 'LOGIN_SUCCESSFUL':
     case 'REGISTRATION_SUCCESSFUL':
-      console.log('LOGING SUCCESS', action.payload)
         AsyncStorage.setItem("@token", action.payload.token);
       return {...state, ...action.payload, isAuthenticated: true, isLoading: false, errors: null};
 

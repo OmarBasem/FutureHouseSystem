@@ -50,6 +50,7 @@ class HouseSerializer(serializers.ModelSerializer):
     class Meta:
         model = House
         fields = [
+            'id',
             'name',
             'timestamp',
             'location',
@@ -111,6 +112,7 @@ class RoomSerializer(serializers.ModelSerializer):
     class Meta:
         model = Room
         fields = [
+            'id',
             'timestamp',
             'cover_photo',
             'cover_photo_id',
@@ -152,6 +154,7 @@ class IoTDeviceSerializer(serializers.ModelSerializer):
     class Meta:
         model = IoTDevice
         fields = [
+            'id',
             'timestamp',
             'cover_photo',
             'cover_photo_id',

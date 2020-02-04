@@ -28,6 +28,7 @@ class HomeScreen extends Component {
 
 
   render() {
+    console.log('houses', this.props.houses)
     return (
       <View><Text>Home</Text></View>
     )
@@ -36,7 +37,8 @@ class HomeScreen extends Component {
 
 function mapStateToProps(state) {
   return {
-    user: state.auth.user
+    user: state.auth.user,
+    houses: state.houses
   }
 }
 
