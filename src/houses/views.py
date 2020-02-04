@@ -15,8 +15,11 @@ class HouseViewSet(viewsets.ModelViewSet):
     serializer_class = HouseSerializer
 
     def get_queryset(self):
-        qs = self.request.user.houses
-        houses = HouseSerializer.setup_eager_loading(qs)
+        qs1 = self.request.user.managed_houses
+        qs2 = self.request.user.dwelled_houses
+        managed_houses = HouseSerializer.setup_eager_loading(qs1)
+        dwelled_houses = HouseSerializer.setup_eager_loading(qs2)
+        houses = managed_houses.union(dwelled_houses)
         return houses
 
 class RoomViewSet(viewsets.ModelViewSet):
