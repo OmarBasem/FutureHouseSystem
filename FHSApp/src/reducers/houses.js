@@ -6,6 +6,9 @@ export default function (state = {}, action) {
     case 'FETCH_HOUSES':
       return {...state, ..._.mapKeys(action.payload, 'id')};
 
+    case 'CLEAR_HOUSES':
+      return {};
+
     default:
       return state;
   }

@@ -26,7 +26,7 @@ SECRET_KEY = '+a*otthpo^ca$n9tr3*%blndr+lqa-0i74=wse2=dn!jjn_eas'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.0.105']
+ALLOWED_HOSTS = ['192.168.0.105', '10.11.4.95']
 
 
 # Application definition
@@ -82,7 +82,7 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication',),
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 10
+    'PAGE_SIZE': 20
 }
 
 REST_KNOX = {

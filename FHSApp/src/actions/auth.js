@@ -61,6 +61,7 @@ export function logout(callback) {
     axios.post(`${URL}/api/auth/logout/`, {}, config)
       .then( () => {
         dispatch({type: 'LOGOUT_SUCCESSFUL'});
+        dispatch({type: 'CLEAR_HOUSES'});
         if (callback !== undefined){
           callback()
         }

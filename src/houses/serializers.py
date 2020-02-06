@@ -10,6 +10,7 @@ from .models import House, CoverPhoto, Room, Report, IoTDevice
 from users.models import User
 from users.serializers import UserSerializer
 from FHS.dynamic_fields import DynamicFieldsModelSerializer
+from users.serializers import UserSerializer
 
 
 class CoverPhotoSerializer(serializers.ModelSerializer):
@@ -45,6 +46,8 @@ class HouseSerializer(serializers.ModelSerializer):
     cover_photo_id = serializers.PrimaryKeyRelatedField(queryset=CoverPhoto.objects.all(), write_only=True,
                                                             required=False)
     last24hr = serializers.SerializerMethodField()
+    manager = UserSerializer(read_only=True)
+    dweller = UserSerializer(read_only=True)
     # dweller_id = serializers.PrimaryKeyRelatedField(queryset=User.objects.all(), write_only=True,
     #                                                     required=False)
     class Meta:
@@ -57,7 +60,9 @@ class HouseSerializer(serializers.ModelSerializer):
             'cover_photo',
             'cover_photo_id',
             'cmu_id',
-            'last24hr'
+            'last24hr',
+            'manager',
+            'dweller'
             # 'dweller_id'
         ]
 
@@ -91,7 +96,12 @@ class HouseSerializer(serializers.ModelSerializer):
 
     def get_last24hr(self, obj):
         report =  Report.objects.filter(house=obj).order_by('-timestamp').first()
-        data = {}
+        data = {
+            'generated': 0,
+            'consumed': 0,
+            'saved': 0,
+            'wasted': 0,
+        }
         if report:
             data = {
                 'generated': report.generated,
