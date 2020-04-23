@@ -3,13 +3,26 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardHeader from '@material-ui/core/CardHeader';
 import Button from '@material-ui/core/Button';
+import 
+
+const cardStyle = {
+    width: 300,
+    minHeight: 300,
+    margin: '0.5em',
+    display: 'inline-block',
+    verticalAlign: 'top'
+};
 
 export default () => (
     <Card>
-        <Button variant="contained" color="primary">
-        Hello World
-        </Button>
         <CardHeader title="Welcome to the administration" />
-        <CardContent>Lorem ipsum sic dolor amet...</CardContent>
+        <CardContent>
+        <Card style={cardStyle}>
+            <CardHeader title="Power Consumption:"/>
+            <CardContent>
+           
+            </CardContent>
+        </Card>
+        </CardContent>
     </Card>
 );
