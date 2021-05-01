@@ -66,18 +66,6 @@ WEBPACK_LOADER = {
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-# AWS_S3_OBJECT_PARAMETERS = {
-#     'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
-#     'CacheControl': 'max-age=94608000',
-# }
-# AWS_STORAGE_BUCKET_NAME = 'stiiick'
-# # AWS_MEDIA_BUCKET_NAME = 'elasticbeanstalk-eu-central-1-781955526746-media'
-# AWS_S3_REGION_NAME = 'eu-central-1'  # e.g. us-east-2
-# AWS_ACCESS_KEY_ID = 'AKIASXM4PZ2EOPTSOI3F'
-# AWS_SECRET_ACCESS_KEY = 'whdWD/BFQufRg9uU3glZn2R99RvT7fFDaJh/rR8m'
-#
-# # Tell django-storages the domain to use to refer to static files.
-# AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication',),
