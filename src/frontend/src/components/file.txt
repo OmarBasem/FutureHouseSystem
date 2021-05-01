@@ -1,2 +1,0 @@
-In this directory you can create any reusable react components and use them in different screens, instead of having to
-write the same code in multiple screens or other components.

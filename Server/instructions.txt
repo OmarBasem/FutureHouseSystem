@@ -1,0 +1,19 @@
+- First open a command prompt as administrator
+
+1. Create a virtual env & activate it
+> python3 -m venv env
+> .\env\Scripts\activate
+
+2. Install the backend python packages using pip
+> py -m pip install -r .\requirements.txt
+
+3. go to src folder
+> cd src
+
+4. run server
+> python manage.py runserver
+
+
+You can go the admin page through: http://127.0.0.1:8000/admin/
+
+In the admin page you can see all the database tables, create new objects, update them or delete them.
